@@ -4,9 +4,8 @@ require_once 'auto_load.php';
 use repository\EmployeeRepository;
 
 $employeeRepository = new EmployeeRepository();
-$employeeRepository->findAll()
+$data = $employeeRepository->findAll();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,10 +56,6 @@ include 'navigation.php';
     </div>
 </main>
 
-<footer>
-
-</footer>
-
-<?php include 'scripts.php' ?>
+<?php include 'footer.php' ?>
 </body>
 </html>
