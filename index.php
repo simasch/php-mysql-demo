@@ -1,5 +1,5 @@
 <?php
-include_once 'db.php';
+require_once 'db.php';
 
 $result = $conn->query('select id, first_name, last_name from employee') or die($conn->error);
 ?>
@@ -25,3 +25,5 @@ $result = $conn->query('select id, first_name, last_name from employee') or die(
     ?>
     </tbody>
 </table>
+
+<a href="employees.php" target="_blank">Export as JSON</a>
