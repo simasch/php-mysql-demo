@@ -1,7 +1,12 @@
 <?php
-require_once 'db.php';
 
-$result = $conn->query('select id, first_name, last_name from employee') or die($conn->error);
+require_once 'employee_repository.php';
+
+use repository\EmployeeRepository;
+
+$employeeRepository = new EmployeeRepository();
+$data = $employeeRepository->findAll();
+
 ?>
 <table>
     <thead>
@@ -12,7 +17,7 @@ $result = $conn->query('select id, first_name, last_name from employee') or die(
     </tr>
     </thead>
     <tbody>
-    <?php while ($row = $result->fetch_assoc()) { ?>
+    <?php while ($row = $data->fetch_assoc()) { ?>
         <tr>
             <td><?= $row['id'] ?></td>
             <td><?= $row['first_name'] ?></td>

@@ -1,12 +1,16 @@
 <?php
-require_once 'db.php';
+
+require_once 'employee_repository.php';
+
+use repository\EmployeeRepository;
 
 header('Content-Type: application/json');
 
-$result = $conn->query('select id, first_name, last_name from employee') or die($conn->error);
+$employeeRepository = new EmployeeRepository();
+$data = $employeeRepository->findAll();
 
 $employees = [];
-while ($row = $result->fetch_assoc()) {
+while ($row = $data->fetch_assoc()) {
     $employees[] = [
         'id' => $row['id'],
         'first_name' => $row['first_name'],
