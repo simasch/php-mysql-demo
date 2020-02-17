@@ -26,32 +26,7 @@ include 'navigation.php';
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Employees</h1>
-
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php while ($row = $data->fetch_assoc()) { ?>
-                        <tr>
-                            <td><?= $row['id'] ?></td>
-                            <td><?= $row['first_name'] ?></td>
-                            <td><?= $row['last_name'] ?></td>
-                        </tr>
-                    <?php } ?>
-                    </tbody>
-                </table>
-
-                <p>
-                    <a href="employees.php" target="_blank">Export as JSON</a>
-                    &nbsp;
-                    <a href="employees.xml.php" target="_blank">Export as XML</a>
-                </p>
+                <h1>HR</h1>
             </div>
         </div>
     </div>

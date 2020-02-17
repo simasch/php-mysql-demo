@@ -1,21 +1,66 @@
 <?php
-
 require_once 'auto_load.php';
 
 use repository\EmployeeRepository;
 
-header('Content-Type: application/json');
-
 $employeeRepository = new EmployeeRepository();
 $data = $employeeRepository->findAll();
+?>
 
-$employees = [];
-while ($row = $data->fetch_assoc()) {
-    $employees[] = [
-        'id' => $row['id'],
-        'first_name' => $row['first_name'],
-        'last_name' => $row['last_name']
-    ];
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Employees</title>
 
-echo json_encode($employees);
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+
+<?php
+$page = 'employees';
+include 'navigation.php';
+?>
+
+<main>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Employees</h1>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php while ($row = $data->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?= $row['id'] ?></td>
+                            <td><?= $row['first_name'] ?></td>
+                            <td><?= $row['last_name'] ?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+
+                <p>
+                    <a href="employees.json.php" target="_blank">Export as JSON</a>
+                    &nbsp;
+                    <a href="employees.xml.php" target="_blank">Export as XML</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+
+</footer>
+
+<?php include 'scripts.php' ?>
+</body>
+</html>
