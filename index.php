@@ -12,17 +12,13 @@ $result = $conn->query('select id, first_name, last_name from employee') or die(
     </tr>
     </thead>
     <tbody>
-    <?php
-    while ($row = $result->fetch_assoc()) {
-        ?>
+    <?php while ($row = $result->fetch_assoc()) { ?>
         <tr>
             <td><?= $row['id'] ?></td>
             <td><?= $row['first_name'] ?></td>
             <td><?= $row['last_name'] ?></td>
         </tr>
-        <?php
-    }
-    ?>
+    <?php } ?>
     </tbody>
 </table>
 
