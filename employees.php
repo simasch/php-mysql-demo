@@ -4,7 +4,6 @@ require_once 'auto_load.php';
 use repository\EmployeeRepository;
 
 $employeeRepository = new EmployeeRepository();
-$data = $employeeRepository->findAll();
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +36,10 @@ include 'navigation.php';
                     </tr>
                     </thead>
                     <tbody>
-                    <?php while ($row = $data->fetch_assoc()) { ?>
+                    <?php
+                    $data = $employeeRepository->findAll();
+                    while ($row = $data->fetch_assoc()) {
+                        ?>
                         <tr>
                             <td><?= $row['id'] ?></td>
                             <td><?= $row['first_name'] ?></td>
