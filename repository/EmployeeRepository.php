@@ -18,7 +18,7 @@ class EmployeeRepository
         }
     }
 
-    public function findAll(): array
+    public function findAll()
     {
         $result = $this->conn->query('select id, first_name, last_name from employee') or die($this->conn->error);
         return $result;

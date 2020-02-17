@@ -1,6 +1,6 @@
 <?php
 
-require_once 'employee_repository.php';
+require_once 'auto_load.php';
 
 use repository\EmployeeRepository;
 
