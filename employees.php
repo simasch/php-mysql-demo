@@ -5,7 +5,6 @@ use repository\EmployeeRepository;
 
 $employeeRepository = new EmployeeRepository();
 $employeeRepository->findAll()
-
 ?>
 
 <!DOCTYPE html>
