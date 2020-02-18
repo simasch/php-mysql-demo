@@ -1,0 +1,8 @@
+GET http://localhost:81/api/employees
+
+###
+
+GET http://localhost:81/api/employees
+Accept: application/xml
+
+###

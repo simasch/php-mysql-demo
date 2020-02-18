@@ -1,6 +1,6 @@
 <?php
 
-require_once '../auto_load.php';
+require_once '../../auto_load.php';
 
 use repository\EmployeeRepository;
 
@@ -19,11 +19,7 @@ function json(array $records)
 
     $employees = [];
     foreach ($records as $record) {
-        $employees[] = [
-            'id' => $record->id,
-            'first_name' => $record->first_name,
-            'last_name' => $record->last_name
-        ];
+        $employees[] = $record->jsonSerialize();
     }
 
     echo json_encode($employees);
@@ -36,10 +32,7 @@ function xml(array $records)
     $xml = new SimpleXMLElement('<employees/>');
 
     foreach ($records as $record) {
-        $employee = $xml->addChild('employee');
-        $employee->addChild('id', $record->id);
-        $employee->addChild('first_name', $record->first_name);
-        $employee->addChild('last_name', $record->last_name);
+        $xml->addChild($record->xmlSerialize($xml));
     }
 
     echo $xml->asXML();
