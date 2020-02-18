@@ -1,5 +1,7 @@
 <?php
 
+namespace hr\tests;
+
 use PHPUnit\Framework\TestCase;
 use hr\repository\EmployeeRepository;
 

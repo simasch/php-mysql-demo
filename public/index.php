@@ -1,12 +1,3 @@
-<?php
-require_once 'autoload.php';
-
-use repository\EmployeeRepository;
-
-$employeeRepository = new EmployeeRepository();
-$data = $employeeRepository->findAll();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

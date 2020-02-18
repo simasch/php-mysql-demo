@@ -1,7 +1,8 @@
 <?php
-require_once 'autoload.php';
 
 use hr\repository\EmployeeRepository;
+
+require __DIR__ . '/../vendor/autoload.php';
 
 $employeeRepository = new EmployeeRepository();
 $employees = $employeeRepository->findAll();

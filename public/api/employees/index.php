@@ -3,8 +3,7 @@
 use hr\model\Employee;
 use hr\repository\EmployeeRepository;
 
-require_once '../../../autoload.php';
-
+require __DIR__ . '/../../../vendor/autoload.php';
 
 $employeeRepository = new EmployeeRepository();
 $records = $employeeRepository->findAll();
