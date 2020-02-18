@@ -1,7 +1,7 @@
 <?php
 
 use PHPUnit\Framework\TestCase;
-use repository\EmployeeRepository;
+use hr\repository\EmployeeRepository;
 
 class EmployeeRepositoryTest extends TestCase
 {
