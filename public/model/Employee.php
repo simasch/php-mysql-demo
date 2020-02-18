@@ -26,7 +26,5 @@ class Employee implements JsonSerializable
         $employee->addChild('id', $this->id);
         $employee->addChild('first_name', $this->first_name);
         $employee->addChild('last_name', $this->last_name);
-
-        return $xml;
     }
 }

@@ -8,9 +8,9 @@ $employeeRepository = new EmployeeRepository();
 $records = $employeeRepository->findAll();
 
 if (!empty($_SERVER['HTTP_ACCEPT']) && $_SERVER['HTTP_ACCEPT'] == 'application/xml') {
-    xml($records);
+    echo xml($records);
 } else {
-    json($records);
+    echo json($records);
 }
 
 function json(array $records)
@@ -22,7 +22,7 @@ function json(array $records)
         $employees[] = $record->jsonSerialize();
     }
 
-    echo json_encode($employees);
+    return json_encode($employees);
 }
 
 function xml(array $records)
@@ -32,8 +32,8 @@ function xml(array $records)
     $xml = new SimpleXMLElement('<employees/>');
 
     foreach ($records as $record) {
-        $xml->addChild($record->xmlSerialize($xml));
+        $record->xmlSerialize($xml);
     }
 
-    echo $xml->asXML();
+    return $xml->asXML();
 }
