@@ -2,6 +2,7 @@
 
 require_once '../../auto_load.php';
 
+use model\Employee;
 use repository\EmployeeRepository;
 
 $employeeRepository = new EmployeeRepository();
@@ -13,6 +14,10 @@ if (!empty($_SERVER['HTTP_ACCEPT']) && $_SERVER['HTTP_ACCEPT'] == 'application/x
     echo json($records);
 }
 
+/**
+ * @param Employee[] $records
+ * @return string
+ */
 function json(array $records)
 {
     header('Content-Type: application/json');
@@ -25,6 +30,10 @@ function json(array $records)
     return json_encode($employees);
 }
 
+/**
+ * @param Employee[] $records
+ * @return mixed
+ */
 function xml(array $records)
 {
     header('Content-Type: application/xml');
