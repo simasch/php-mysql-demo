@@ -45,12 +45,6 @@ include 'navigation.php';
                     <?php } ?>
                     </tbody>
                 </table>
-
-                <p>
-                    <a href="employees.json.php" target="_blank">Export as JSON</a>
-                    &nbsp;
-                    <a href="employees.xml.php" target="_blank">Export as XML</a>
-                </p>
             </div>
         </div>
     </div>
