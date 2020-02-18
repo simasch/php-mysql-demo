@@ -4,7 +4,7 @@ require_once 'auto_load.php';
 use repository\EmployeeRepository;
 
 $employeeRepository = new EmployeeRepository();
-$data = $employeeRepository->findAll();
+$employees = $employeeRepository->findAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,11 +36,11 @@ include 'navigation.php';
                     </tr>
                     </thead>
                     <tbody>
-                    <?php while ($row = $data->fetch_assoc()) { ?>
+                    <?php foreach ($employees as $employee) { ?>
                         <tr>
-                            <td><?= $row['id'] ?></td>
-                            <td><?= $row['first_name'] ?></td>
-                            <td><?= $row['last_name'] ?></td>
+                            <td><?= $employee->id ?></td>
+                            <td><?= $employee->first_name ?></td>
+                            <td><?= $employee->last_name ?></td>
                         </tr>
                     <?php } ?>
                     </tbody>

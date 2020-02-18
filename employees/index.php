@@ -4,51 +4,42 @@ require_once '../auto_load.php';
 
 use repository\EmployeeRepository;
 
-if (!empty($_SERVER['HTTP_ACCEPT'])) {
-    $accept = $_SERVER['HTTP_ACCEPT'];
+$employeeRepository = new EmployeeRepository();
+$records = $employeeRepository->findAll();
 
-    if ($accept == 'application/xml') {
-        xml();
-    } else {
-        json();
-    }
+if (!empty($_SERVER['HTTP_ACCEPT']) && $_SERVER['HTTP_ACCEPT'] == 'application/xml') {
+    xml($records);
 } else {
-    json();
+    json($records);
 }
 
-function json()
+function json(array $records)
 {
     header('Content-Type: application/json');
 
-    $employeeRepository = new EmployeeRepository();
-    $data = $employeeRepository->findAll();
-
     $employees = [];
-    while ($row = $data->fetch_assoc()) {
+    foreach ($records as $record) {
         $employees[] = [
-            'id' => $row['id'],
-            'first_name' => $row['first_name'],
-            'last_name' => $row['last_name']
+            'id' => $record->id,
+            'first_name' => $record->first_name,
+            'last_name' => $record->last_name
         ];
     }
 
     echo json_encode($employees);
 }
 
-function xml()
+function xml(array $records)
 {
     header('Content-Type: application/xml');
 
-    $employeeRepository = new EmployeeRepository();
-    $data = $employeeRepository->findAll();
-
     $xml = new SimpleXMLElement('<employees/>');
 
-    while ($row = $data->fetch_assoc()) {
+    foreach ($records as $record) {
         $employee = $xml->addChild('employee');
-        $employee->addChild('id', $row['id']);
-        $employee->addChild('first_name', $row['first_name']);
-        $employee->addChild('last_name', $row['last_name']);
+        $employee->addChild('id', $record->id);
+        $employee->addChild('first_name', $record->first_name);
+        $employee->addChild('last_name', $record->last_name);
     }
 
     echo $xml->asXML();
