@@ -11,7 +11,10 @@ class Employee implements JsonSerializable
     public string $first_name;
     public string $last_name;
 
-    public function jsonSerialize()
+    /**
+     * @return array
+     */
+    public function jsonSerialize(): array
     {
         return [
             'id' => $this->id,
@@ -20,6 +23,9 @@ class Employee implements JsonSerializable
         ];
     }
 
+    /**
+     * @param SimpleXMLElement $xml
+     */
     public function xmlSerialize(SimpleXMLElement $xml)
     {
         $employee = $xml->addChild('employee');
