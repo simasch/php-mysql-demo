@@ -1,0 +1,16 @@
+{
+  "require-dev": {
+    "phpunit/phpunit": "^8.5.2"
+  },
+
+  "autoload": {
+    "psr-4": {
+      "hr\\": "src/"
+    }
+  },
+  "require": {
+    "ext-mysqli": "*",
+    "ext-json": "*",
+    "ext-simplexml": "*"
+  }
+}
