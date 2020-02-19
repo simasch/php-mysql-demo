@@ -8,7 +8,7 @@ use mysqli;
 class EmployeeRepository
 {
 
-    private mysqli $conn;
+    private $conn;
 
     public function __construct()
     {

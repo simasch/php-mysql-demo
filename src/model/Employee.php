@@ -7,9 +7,9 @@ use SimpleXMLElement;
 
 class Employee implements JsonSerializable
 {
-    public int $id;
-    public string $first_name;
-    public string $last_name;
+    public $id;
+    public $first_name;
+    public $last_name;
 
     /**
      * @return array
