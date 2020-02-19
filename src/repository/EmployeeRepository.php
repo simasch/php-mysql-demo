@@ -4,25 +4,21 @@ namespace hr\repository;
 
 use hr\Configuration;
 use hr\model\Employee;
-use mysqli;
+use PDO;
+use PDOException;
 
 class EmployeeRepository
 {
-    private $conn;
+    private $dbh;
 
     public function __construct()
     {
         $config = new Configuration();
 
-        $this->conn = new mysqli(
-            $config->value('database.host'),
+        $this->dbh = new PDO(
+            $config->value('database.url'),
             $config->value('database.username'),
-            $config->value('database.password'),
-            $config->value('database.dbname'));
-
-        if ($this->conn->connect_error) {
-            die($this->conn->error);
-        }
+            $config->value('database.password'));
     }
 
     /**
@@ -30,7 +26,7 @@ class EmployeeRepository
      */
     public function findAll(): array
     {
-        $records = $this->conn->query('select id, first_name, last_name from employee') or die($this->conn->error);
+        $records = $this->dbh->query('select id, first_name, last_name from employee');
         $employees = [];
         foreach ($records as $record) {
             $employee = new Employee();
