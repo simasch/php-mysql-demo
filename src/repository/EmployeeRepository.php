@@ -2,6 +2,7 @@
 
 namespace hr\repository;
 
+use hr\Configuration;
 use hr\model\Employee;
 use mysqli;
 
@@ -11,7 +12,13 @@ class EmployeeRepository
 
     public function __construct()
     {
-        $this->conn = new mysqli('localhost', 'hr', 'hr', 'hr');
+        $config = new Configuration();
+
+        $this->conn = new mysqli(
+            $config->value('database.host'),
+            $config->value('database.username'),
+            $config->value('database.password'),
+            $config->value('database.dbname'));
 
         if ($this->conn->connect_error) {
             die($this->conn->error);
