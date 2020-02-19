@@ -8,7 +8,8 @@ class Configuration
 
     public function __construct()
     {
-        $this->ini_array = parse_ini_file("application.ini");
+        $path = dirname(__DIR__) . '/config/application.ini';
+        $this->ini_array = parse_ini_file($path);
     }
 
     public function value(string $key): string
