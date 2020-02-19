@@ -1,13 +1,16 @@
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
+
+include 'auth.inc.php';
+
 use hr\repository\EmployeeRepository;
 
-require __DIR__ . '/../vendor/autoload.php';
+$employeeRepository = new EmployeeRepository();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = $_POST['id'];
 
-    $employeeRepository = new EmployeeRepository();
     $employee = $employeeRepository->findById($id);
 
     $employee->first_name = $_POST['first_name'];
@@ -19,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 } else {
     $id = $_GET['id'];
 
-    $employeeRepository = new EmployeeRepository();
     $employee = $employeeRepository->findById($id);
 }
 ?>
@@ -35,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <?php
 $page = 'employees';
-include 'navigation.php';
+include 'navigation.inc.php';
 ?>
 
 <main>
@@ -43,7 +45,7 @@ include 'navigation.php';
         <div class="row">
             <div class="col-md-12">
                 <h1>Employee <?= $employee->id ?></h1>
-                <form method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']); ?>">
                     <input type="hidden" name="id" value="<?= $employee->id ?>">
 
                     <div class="form-group">
@@ -59,12 +61,11 @@ include 'navigation.php';
                     &nbsp;
                     <a href="employees.php">Back</a>
                 </form>
-
             </div>
         </div>
     </div>
 </main>
 
-<?php include 'footer.php' ?>
+<?php include 'footer.inc.php' ?>
 </body>
 </html>

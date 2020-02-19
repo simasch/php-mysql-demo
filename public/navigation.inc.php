@@ -17,6 +17,15 @@
                     <a class="nav-link" href="employees.php">Employees</a>
                 </li>
             </ul>
+            <div>
+                <?php
+                if (isset($_SESSION['user'])) {
+                    echo '<a class="text-light" href="logout.php">Logout (' . $_SESSION['user'] . ')</a>';
+                } else {
+                    echo '<a class="text-light" href="login.php">Login</a>';
+                }
+                ?>
+            </div>
         </div>
     </nav>
 </header>

@@ -1,8 +1,10 @@
 <?php
 
-use hr\repository\EmployeeRepository;
-
 require __DIR__ . '/../vendor/autoload.php';
+
+include 'auth.inc.php';
+
+use hr\repository\EmployeeRepository;
 
 $employeeRepository = new EmployeeRepository();
 $employees = $employeeRepository->findAll();
@@ -19,7 +21,7 @@ $employees = $employeeRepository->findAll();
 
 <?php
 $page = 'employees';
-include 'navigation.php';
+include 'navigation.inc.php';
 ?>
 
 <main>
@@ -55,6 +57,6 @@ include 'navigation.php';
     </div>
 </main>
 
-<?php include 'footer.php' ?>
+<?php include 'footer.inc.php' ?>
 </body>
 </html>

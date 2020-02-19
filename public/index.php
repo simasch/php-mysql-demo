@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +13,7 @@
 
 <?php
 $page = 'index';
-include 'navigation.php';
+include 'navigation.inc.php';
 ?>
 
 <main>
@@ -28,6 +31,6 @@ include 'navigation.php';
 
 </footer>
 
-<?php include 'footer.php' ?>
+<?php include 'footer.inc.php' ?>
 </body>
 </html>

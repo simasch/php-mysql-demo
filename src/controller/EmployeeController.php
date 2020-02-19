@@ -2,9 +2,7 @@
 
 namespace hr\controller;
 
-use hr\model\Employee;
 use hr\repository\EmployeeRepository;
-use mysqli;
 use SimpleXMLElement;
 
 class EmployeeController

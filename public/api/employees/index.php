@@ -1,8 +1,8 @@
 <?php
 
-use hr\controller\EmployeeController;
-
 require __DIR__ . '/../../../vendor/autoload.php';
+
+use hr\controller\EmployeeController;
 
 $employeeController = new EmployeeController();
 

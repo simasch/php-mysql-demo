@@ -5,8 +5,6 @@ namespace hr\repository;
 use hr\Configuration;
 use hr\model\Employee;
 use PDO;
-use PDOException;
-use phpDocumentor\Reflection\Types\Null_;
 
 class EmployeeRepository
 {
