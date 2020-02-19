@@ -34,6 +34,7 @@ include 'navigation.php';
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -42,6 +43,9 @@ include 'navigation.php';
                             <td><?= $employee->id ?></td>
                             <td><?= $employee->first_name ?></td>
                             <td><?= $employee->last_name ?></td>
+                            <td>
+                                <a href="employee.php?id=<?= $employee->id ?>">Edit</a>
+                            </td>
                         </tr>
                     <?php } ?>
                     </tbody>

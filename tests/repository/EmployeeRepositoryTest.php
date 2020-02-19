@@ -21,4 +21,10 @@ class EmployeeRepositoryTest extends TestCase
         $this->assertEquals(2, count($employees));
     }
 
+    public function testFindById(): void
+    {
+        $employee = $this->repository->findById(1);
+
+        $this->assertEquals(1, $employee->id);
+    }
 }
