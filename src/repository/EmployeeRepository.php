@@ -31,8 +31,7 @@ class EmployeeRepository
 
         $employees = [];
         foreach ($records as $record) {
-            $employee = $this->createEmployee($record);
-            $employees[] = $employee;
+            $employees[] = new Employee($record['id'], $record['first_name'], $record['last_name']);
         }
         return $employees;
     }
@@ -45,20 +44,7 @@ class EmployeeRepository
 
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return $this->createEmployee($record);
-    }
-
-    /**
-     * @param $record
-     * @return Employee
-     */
-    private function createEmployee($record): Employee
-    {
-        $employee = new Employee();
-        $employee->id = $record['id'];
-        $employee->first_name = $record['first_name'];
-        $employee->last_name = $record['last_name'];
-        return $employee;
+        return new Employee($record['id'], $record['first_name'], $record['last_name']);
     }
 
     public function save(Employee $employee)
