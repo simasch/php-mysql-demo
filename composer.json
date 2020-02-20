@@ -1,6 +1,15 @@
 {
-  "name": "php-mysql-demo",
+  "name": "seventytwo/php-mysql-demo",
   "description": "Demo PHP app using MySQL",
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Simon Martinelli",
+      "email": "simon@72.services",
+      "homepage": "https://www.72.services",
+      "role": "Developer"
+    }
+  ],
   "scripts": {
     "test": "vendor/bin/phpunit"
   },
