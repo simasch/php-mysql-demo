@@ -11,6 +11,8 @@ class EmployeeRepositoryTest extends TestCase
 
     public function setUp(): void
     {
+        $GLOBALS['test'] = true;
+
         $this->repository = new EmployeeRepository();
     }
 

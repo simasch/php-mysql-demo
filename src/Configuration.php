@@ -8,7 +8,11 @@ class Configuration
 
     public function __construct()
     {
-        $path = dirname(__DIR__) . '/config/application.ini';
+        if (isset($GLOBALS['test'])) {
+            $path = dirname(__DIR__) . '/config/application_test.ini';
+        } else {
+            $path = dirname(__DIR__) . '/config/application.ini';
+        }
         $this->ini_array = parse_ini_file($path);
     }
 

@@ -11,6 +11,8 @@ class EmployeeControllerTest extends TestCase
 
     public function setUp(): void
     {
+        $GLOBALS['test'] = true;
+
         $this->controller = new EmployeeController();
     }
 
