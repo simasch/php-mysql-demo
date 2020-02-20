@@ -2,6 +2,7 @@
 
 namespace hr\model;
 
+use DateTime;
 use JsonSerializable;
 use SimpleXMLElement;
 
@@ -10,18 +11,21 @@ class Employee implements JsonSerializable
     public $id;
     public $first_name;
     public $last_name;
+    public $date_of_birth;
 
     /**
      * Employee constructor.
-     * @param $id
-     * @param $first_name
-     * @param $last_name
+     * @param int $id
+     * @param string $first_name
+     * @param string $last_name
+     * @param DateTime $date_of_birth
      */
-    public function __construct(int $id, string $first_name, string $last_name)
+    public function __construct(int $id, string $first_name, string $last_name, string $date_of_birth)
     {
         $this->id = $id;
         $this->first_name = $first_name;
         $this->last_name = $last_name;
+        $this->date_of_birth = $date_of_birth;
     }
 
     /**
@@ -32,7 +36,8 @@ class Employee implements JsonSerializable
         return [
             'id' => $this->id,
             'first_name' => $this->first_name,
-            'last_name' => $this->last_name
+            'last_name' => $this->last_name,
+            'date_of_birth' => $this->date_of_birth
         ];
     }
 
@@ -45,5 +50,6 @@ class Employee implements JsonSerializable
         $employee->addChild('id', $this->id);
         $employee->addChild('first_name', $this->first_name);
         $employee->addChild('last_name', $this->last_name);
+        $employee->addChild('date_of_birth', $this->date_of_birth);
     }
 }

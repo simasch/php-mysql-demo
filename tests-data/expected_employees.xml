@@ -1,2 +1,2 @@
 <?xml version="1.0"?>
-<employees><employee><id>1</id><first_name>Simon</first_name><last_name>Martinelli</last_name></employee><employee><id>2</id><first_name>Peter</first_name><last_name>Muster</last_name></employee></employees>
+<employees><employee><id>1</id><first_name>Simon</first_name><last_name>Martinelli</last_name><date_of_birth>1972-08-24</date_of_birth></employee><employee><id>2</id><first_name>Peter</first_name><last_name>Muster</last_name><date_of_birth>1981-10-14</date_of_birth></employee></employees>
