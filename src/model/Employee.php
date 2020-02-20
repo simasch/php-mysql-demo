@@ -3,10 +3,9 @@
 namespace hr\model;
 
 use DateTime;
-use JsonSerializable;
 use SimpleXMLElement;
 
-class Employee implements JsonSerializable
+class Employee
 {
     public $id;
     public $first_name;
@@ -19,19 +18,41 @@ class Employee implements JsonSerializable
      * @param string $first_name
      * @param string $last_name
      * @param DateTime $date_of_birth
+     * @return Employee
      */
-    public function __construct(int $id, string $first_name, string $last_name, string $date_of_birth)
+    public static function populate(int $id, string $first_name, string $last_name, string $date_of_birth): Employee
     {
-        $this->id = $id;
-        $this->first_name = $first_name;
-        $this->last_name = $last_name;
-        $this->date_of_birth = $date_of_birth;
+        $employee = new Employee();
+        $employee->id = $id;
+        $employee->first_name = $first_name;
+        $employee->last_name = $last_name;
+        $employee->date_of_birth = $date_of_birth;
+
+        return $employee;
+    }
+
+    /**
+     * Employee constructor.
+     * @param int $id
+     * @param string $first_name
+     * @param string $last_name
+     * @param DateTime $date_of_birth
+     * @return Employee
+     */
+    public static function create(string $first_name, string $last_name, string $date_of_birth): Employee
+    {
+        $employee = new Employee();
+        $employee->first_name = $first_name;
+        $employee->last_name = $last_name;
+        $employee->date_of_birth = $date_of_birth;
+
+        return $employee;
     }
 
     /**
      * @return array
      */
-    public function jsonSerialize(): array
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
@@ -44,7 +65,7 @@ class Employee implements JsonSerializable
     /**
      * @param SimpleXMLElement $xml
      */
-    public function xmlSerialize(SimpleXMLElement $xml)
+    public function toXml(SimpleXMLElement $xml)
     {
         $employee = $xml->addChild('employee');
         $employee->addChild('id', $this->id);

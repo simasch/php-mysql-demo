@@ -36,7 +36,8 @@ include 'navigation.inc.php';
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th></th>
+                        <th>Date of Birth</th>
+                        <th><a href="employee.php">New</a></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -45,6 +46,7 @@ include 'navigation.inc.php';
                             <td><?= $employee->id ?></td>
                             <td><?= $employee->first_name ?></td>
                             <td><?= $employee->last_name ?></td>
+                            <td><?= $employee->date_of_birth ?></td>
                             <td>
                                 <a href="employee.php?id=<?= $employee->id ?>">Edit</a>
                             </td>

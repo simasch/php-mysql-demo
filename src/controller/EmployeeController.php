@@ -20,7 +20,7 @@ class EmployeeController
 
         $employees = [];
         foreach ($records as $record) {
-            $employees[] = $record->jsonSerialize();
+            $employees[] = $record->toArray();
         }
 
         return json_encode($employees);
@@ -32,7 +32,7 @@ class EmployeeController
 
         $xml = new SimpleXMLElement('<employees/>');
         foreach ($records as $record) {
-            $record->xmlSerialize($xml);
+            $record->toXml($xml);
         }
 
         return $xml->asXML();

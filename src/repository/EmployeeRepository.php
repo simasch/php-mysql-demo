@@ -2,6 +2,7 @@
 
 namespace hr\repository;
 
+use Error;
 use hr\Configuration;
 use hr\model\Employee;
 use PDO;
@@ -31,12 +32,12 @@ class EmployeeRepository
 
         $employees = [];
         foreach ($records as $record) {
-            $employees[] = new Employee($record['id'], $record['first_name'], $record['last_name'], $record['date_of_birth']);
+            $employees[] = Employee::populate($record['id'], $record['first_name'], $record['last_name'], $record['date_of_birth']);
         }
         return $employees;
     }
 
-    public function findById($id)
+    public function findById(int $id)
     {
         $stmt = $this->dbh->prepare("select id, first_name, last_name, date_of_birth from employee where id = :id");
         $stmt->bindParam(':id', $id);
@@ -44,29 +45,49 @@ class EmployeeRepository
 
         $record = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        return new Employee($record['id'], $record['first_name'], $record['last_name'], $record['date_of_birth']);
+        return Employee::populate($record['id'], $record['first_name'], $record['last_name'], $record['date_of_birth']);
     }
 
-    public function save(Employee $employee)
+    public function insert(Employee $employee)
     {
         $this->dbh->beginTransaction();
-        if ($employee->id != NULL) {
-            $stmt = $this->dbh->prepare('update employee 
-                                         set first_name = :first_name, last_name, date_of_birth = :date_of_birth 
-                                        where id = :id');
-            $stmt->bindParam(':id', $employee->id);
-            $stmt->bindParam(':first_name', $employee->first_name);
-            $stmt->bindParam(':last_name', $employee->last_name);
-            $stmt->bindParam(':date_of_birth', $employee->date_of_birth);
-            $stmt->execute();
+
+        $stmt = $this->dbh->prepare('insert into employee (first_name, last_name, date_of_birth) 
+                                            values (:first_name, :last_name, :date_of_birth)');
+
+        if ($stmt->execute(array(
+                'first_name' => $employee->first_name,
+                'last_name' => $employee->last_name,
+                'date_of_birth' => $employee->date_of_birth)
+        )) {
+            $this->dbh->commit();
         } else {
-            $stmt = $this->dbh->prepare('insert into employee (first_name, last_name, date_of_birth)
-                                                       values (:first_name, :last_name, :date_of_birth');
-            $stmt->bindParam(':first_name', $employee->first_name);
-            $stmt->bindParam(':last_name', $employee->last_name);
-            $stmt->bindParam(':date_of_birth', $employee->date_of_birth);
-            $stmt->execute();
+            die($stmt->errorCode());
         }
+    }
+
+    public function update(Employee $employee)
+    {
+        $this->dbh->beginTransaction();
+
+        $stmt = $this->dbh->prepare('update employee 
+                                     set first_name = :first_name, last_name = :last_name, date_of_birth = :date_of_birth 
+                                     where id = :id');
+        if ($stmt->execute($employee->toArray())) {
+            $this->dbh->commit();
+        } else {
+            die($stmt->errorCode());
+        }
+    }
+
+    public function deleteById(int $id)
+    {
+        $this->dbh->beginTransaction();
+
+        $stmt = $this->dbh->prepare('delete employee where id = :id');
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+
         $this->dbh->commit();
     }
 }
