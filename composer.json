@@ -1,4 +1,9 @@
 {
+  "name": "php-mysql-demo",
+  "description": "Demo PHP app using MySQL",
+  "scripts": {
+    "test": "vendor/bin/phpunit"
+  },
   "require": {
     "php": "^7.3",
     "ext-pdo": "*",
